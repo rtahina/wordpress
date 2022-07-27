@@ -9,8 +9,11 @@ $types = TaxonomyHelper::get_taxonomy_list( 'property-type' );
 ?>
 <div class="container col-6">
     <form id="form_add_property" enctype="multipart/form-data">
+        <div class="" id="submitErrorMessage">
+            
+        </div>
         <div class="mb-3">
-            <label class="form-label" for="propertyName">Property name</label>
+            <label class="form-label" for="propertyName">Property name*</label>
             <input class="form-control" id="propertyName" type="text" placeholder="Property name" data-sb-validations="required" />
             <div class="invalid-feedback" data-sb-feedback="propertyName:required">Property name is required.</div>
         </div>
@@ -54,13 +57,8 @@ $types = TaxonomyHelper::get_taxonomy_list( 'property-type' );
             </select>
         </div>
         <div class="mb-3">
-            <label class="form-label" for="propertyImage">Image</label>
-            <input class="form-control" id="propertyImage" type="file" />
-            <div class="invalid-feedback">Image is required.</div>
-        </div>
-        <div class="d-none" id="submitErrorMessage">
-            <div class="text-center text-danger mb-3">Error sending message!</div>
-        </div>
+            <span class="text-danger">(*) required fields</span>
+        <div class="mb-3">
         <?php wp_nonce_field('add-property', 'add-property-nonce');?>
         <div class="d-grid">
             <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>

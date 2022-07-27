@@ -148,8 +148,16 @@ class PropertyController {
 		$data['floor'] = $_REQUEST['floor'] ?? '';
 		$data['city'] = $_REQUEST['city'] ?? 0;
 		$data['types'] = json_decode( stripslashes( $_REQUEST['type'] ) );
-		$data['image'] = $_FILES['image'];
-		print_r($_FILES['image']);
+		
+		if ( trim( $data['name'] ) == '' ) {
+			header( 'Content-Type: application/json' );
+			echo json_encode( array( 
+				'success' => false,
+				'message' => 'Property must have a name',
+				) );
+			exit;
+		}
+
 		$property = (new self)->create( $data );
 
 		if ( is_wp_error( $property ) ) {
