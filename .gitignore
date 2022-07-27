@@ -1,0 +1,11 @@
+.vscode/
+.DS_Store
+debug.log
+wp-config.php
+.htaccess
+wp-content/uploads/*
+wp-content/themes/understrap/*
+wp-content/languages/*
+wp-content/plugins/hello.php
+wp-content/plugins/index.php
+wp-content/plugins/akismet/*

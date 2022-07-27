@@ -1,0 +1,11 @@
+.idea/
+.DS_Store
+Thumbs.db
+
+wp-content/uploads/*
+!wp-content/uploads/.gitkeep
+wp-content/upgrade/
+wp-content/themes/*
+!wp-content/uploads/.gitkeep
+wp-content/languages/*
+wp-content/*.log

@@ -1,0 +1,59 @@
+section {
+    
+    padding: 2em 0;
+    border-bottom: 1px solid rgba($color: $primary, $alpha: 0.5);
+    margin-bottom: 2em;
+    
+    h2 {
+        color: $primary;
+        margin-bottom: 1.5em;
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .property-card {
+        padding: 0.8em;
+        border: 1px solid rgba($color: #000000, $alpha: 0.2);
+
+        h3 {
+            font-size: 0.8 em;
+            color: $secondary;
+
+            a {
+                text-decoration: none;
+                color: $secondary;
+            }
+        }
+        
+        .cost {
+            font-weight: 700;
+        }
+
+        .link {
+            text-align: right;
+        }
+    }
+
+    .city-card {
+        padding: 0.8em;
+        border: 1px solid rgba($color: #000000, $alpha: 0.2);
+
+        h3 {
+            font-size: 0.8 em;
+            color: $secondary;
+
+            a {
+                text-decoration: none;
+                color: $secondary;
+            }
+        }
+        
+    }
+
+    &::after {
+        content: "";
+        clear: both;
+    }
+}
