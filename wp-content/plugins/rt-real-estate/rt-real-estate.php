@@ -61,7 +61,7 @@ function add_city_meta_box() {
  */
 
 function add_theme_scripts() {
-	wp_enqueue_script( 'rt-real-estate-js', get_stylesheet_directory_uri() . '/js/rt-real-estate.js', array('jquery'), '1.0.0', true);
+	wp_enqueue_script( 'rt-real-estate-js', plugin_dir_url( __FILE__ ) . 'assets/js/rt-real-estate.js', array('jquery'), '1.0.0', true);
 	wp_localize_script( 'rt-real-estate-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 }
 
