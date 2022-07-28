@@ -10,26 +10,25 @@
 			$('#submitButton').prop('disabled', true);
 			$('#submitButton').html('Adding a property...');
 
-            var nonce = $('#add-property-nonce').val();
-            var types = [];
-            $('input[name="propertyType"]:checked').each(function() {
-                types.push(this.value);
-             });
+			var formData = new FormData(this);
 
+			var types = [];
+            $('input[name="propertyType"]:checked').each(function() {
+				types.push(this.value);
+			});
+			formData.append( 'propertyTypes', types);
+			formData.append( 'action', 'add_property');
+			
             $.ajax({
 				type: "post",
 				dataType: "json",
 				url: ajax_object.ajax_url,
-				data: {
-					action: "add_property",
-					nonce: nonce,
-					name: $('#propertyName').val(),
-					description: $('#propertyDescription').val(),
-					cost: $('#propertyCost').val(),
-					address: $('#propertyAddress').val(),
-					floor: $('#propertyFloor').val(),
-                    type: JSON.stringify(types),
-                    city: $('#propertyCity').val(),
+				data: formData,
+				contentType: false,
+				processData: false,
+				error: function(xhr, status, error) {
+					var err = JSON.parse(xhr.responseText);
+					console.log(err.Message);
 				},
 				success: function (response) {
 					if (response.success === false) {
@@ -37,6 +36,8 @@
                     } else {
 						$('#submitErrorMessage').html('<div class="text-center text-success mb-3">Property added</div>');
 					}
+					$('#submitButton').prop('disabled', false);
+					$('#submitButton').html('Submit');
 				},
 				complete: function (response) {
 					$('#submitButton').prop('disabled', false);

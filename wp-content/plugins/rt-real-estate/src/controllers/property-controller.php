@@ -133,8 +133,7 @@ class PropertyController {
 		if ( is_wp_error( $property_id ) ) return $property_id;
 
 		// Property image
-		$file = MediaHelper::upload_files( $data['image'] );
-		print_r($data['image']);
+		$file = MediaHelper::upload_files( $data['image'] );		
         $attachment_id = MediaHelper::insert_attachment( $property_id, $file );
 		set_post_thumbnail( $property_id, $attachment_id );
 
@@ -163,7 +162,7 @@ class PropertyController {
 			'success'  => true,
 		);
 		
-		if ( ! wp_verify_nonce( $_REQUEST['nonce'], 'add-property' ) ) {
+		if ( ! wp_verify_nonce( $_REQUEST['add-property-nonce'], 'add-property' ) ) {
 			header( 'Content-Type: application/json' );
 			echo json_encode( array( 'success' => false ) );
 			exit;
@@ -181,14 +180,17 @@ class PropertyController {
 		}
 		
 		$data['user_id']            = $user_id;
-		$data['name']            = $_REQUEST['name'] ?? '';
-		$data['description']             = $_REQUEST['description'] ?? '';
-		$data['cost']                 = $_REQUEST['cost'] ?? '';
-		$data['address']              = $_REQUEST['address'] ?? '';
-		$data['floor'] = $_REQUEST['floor'] ?? '';
-		$data['city'] = $_REQUEST['city'] ?? 0;
-		$data['types'] = json_decode( stripslashes( $_REQUEST['type'] ) );
+		$data['name']            = $_REQUEST['propertyName'] ?? '';
+		$data['description']             = $_REQUEST['propertyDescription'] ?? '';
+		$data['cost']                 = $_REQUEST['propertyCost'] ?? '';
+		$data['address']              = $_REQUEST['propertyAddress'] ?? '';
+		$data['floor'] = $_REQUEST['propertyFloor'] ?? '';
+		$data['city'] = $_REQUEST['propertyCity'] ?? 0;
+		$data['image'] = $_FILES['propertyImage'] ?? null;
 		
+		$type_ids = explode( ',', $_REQUEST['propertyTypes'] );
+		$data['types'] = $type_ids;
+
 		if ( trim( $data['name'] ) == '' ) {
 			header( 'Content-Type: application/json' );
 			echo json_encode( array( 

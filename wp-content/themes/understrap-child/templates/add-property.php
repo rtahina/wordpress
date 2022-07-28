@@ -14,27 +14,27 @@ $types = TaxonomyHelper::get_taxonomy_list( 'property-type' );
         </div>
         <div class="mb-3">
             <label class="form-label" for="propertyName">Property name*</label>
-            <input class="form-control" id="propertyName" type="text" placeholder="Property name" data-sb-validations="required" />
+            <input class="form-control" name="propertyName" id="propertyName" type="text" placeholder="Property name" data-sb-validations="required" />
             <div class="invalid-feedback" data-sb-feedback="propertyName:required">Property name is required.</div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="propertyDescription">Property description</label>
-            <textarea class="form-control" id="propertyDescription" type="text" placeholder="Property description" style="height: 10rem;" data-sb-validations="required"></textarea>
+            <textarea class="form-control" name="propertyDescription" id="propertyDescription" type="text" placeholder="Property description" style="height: 10rem;" data-sb-validations="required"></textarea>
             <div class="invalid-feedback" data-sb-feedback="propertyDescription:required">Property description is required.</div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="propertyCost">Cost</label>
-            <input class="form-control" id="propertyCost" type="text" placeholder="Cost" data-sb-validations="required" />
+            <input class="form-control" name="propertyCost" id="propertyCost" type="text" placeholder="Cost" data-sb-validations="required" />
             <div class="invalid-feedback" data-sb-feedback="cost:required">Cost is required.</div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="propertyAddress">Address</label>
-            <input class="form-control" id="propertyAddress" type="text" placeholder="Address" data-sb-validations="required" />
+            <input class="form-control" name="propertyAddress" id="propertyAddress" type="text" placeholder="Address" data-sb-validations="required" />
             <div class="invalid-feedback" data-sb-feedback="address:required">Address is required.</div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="propertyFloor">Floor</label>
-            <input class="form-control" id="propertyFloor" type="text" placeholder="Floor" data-sb-validations="required" />
+            <input class="form-control" name="propertyFloor" id="propertyFloor" type="text" placeholder="Floor" data-sb-validations="required" />
             <div class="invalid-feedback" data-sb-feedback="floor:required">Floor is required.</div>
         </div>
         <?php if ( $types ) : ?>
@@ -50,11 +50,15 @@ $types = TaxonomyHelper::get_taxonomy_list( 'property-type' );
         <?php endif; ?>
         <div class="mb-3">
             <label class="form-label" for="propertyCity">City</label>
-            <select class="form-select" id="propertyCity" aria-label="City">
+            <select class="form-select" name="propertyCity" id="propertyCity" aria-label="City">
                 <?php foreach ( $cities['cities'] as $city ) : ?>
                     <option value="<?php echo $city['ID']; ?>"><?php echo $city['name']; ?></option>
                 <?php endforeach; ?>
             </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="propertyImage">Image</label>
+            <input class="form-control" name="propertyImage" id="propertyImage" type="file" />
         </div>
         <div class="mb-3">
             <span class="text-danger">(*) required fields</span>
