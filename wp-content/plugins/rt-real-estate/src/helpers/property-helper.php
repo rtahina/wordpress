@@ -43,4 +43,21 @@ class PropertyHelper {
 
         return join( $separator, $property_types );
     }
+
+    /**
+     * Get the properties for a givien city
+     * 
+     * @param int $city_id
+     * @return array
+     */
+    public static function get_property_list_of_single_city( int $property_id = 0 ): array {
+        
+        global $post;
+
+        $properties = [];
+
+        
+
+        return $properties;
+    }
 }

@@ -74,6 +74,46 @@ class PropertyController {
 	}
 
 	/**
+	 * Returns array of property data.
+	 * 
+	 * @param int $id
+	 * @return array|false
+	 */
+	public function single( int $id = 0 ): array {
+		
+		global $post;
+
+		$id = ( $id > 0 ) ? $id : $post->ID; 
+		
+		$property =  get_post( $id );
+
+		if ( is_null( $property ) ) return false;
+	
+		$data = array();
+		$data['ID'] = $property->ID;
+		$data['permalink'] = get_the_permalink( $property->ID );
+		$data['name'] = $property->post_title;
+		$data['description'] = $property->post_content;
+		$data['cost'] = get_field( 'property_cost', $property->ID );
+		$data['address'] = get_field( 'property_address', $property->ID );
+		$data['floor'] = get_field( 'floor', $property->ID );
+		$data['property_gallery'] = get_field( 'property_gallery', $property->ID );
+		$city = PropertyHelper::get_property_city( $property->ID );
+		$data['city'] = ( $city ) ? $city : ""; 
+		$data['types'] = PropertyHelper::get_property_type( $property->ID ); 
+		
+		if ( has_post_thumbnail( $property->ID ) ) {
+			$image = get_the_post_thumbnail( $property->ID );
+		} else {
+			$image = '';
+		}
+		
+		$data['image'] = $image;
+
+		return $data;
+	}
+
+	/**
 	 * Creates a property object
 	 * 
 	 * @param array $data
