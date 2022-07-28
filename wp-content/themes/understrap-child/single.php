@@ -27,7 +27,9 @@ $container = get_theme_mod( 'understrap_container_type' );
 				while ( have_posts() ) {
 					the_post();
 					get_template_part( 'loop-templates/content', 'single' );
-					get_template_part( 'loop-templates/content', 'property-features' );
+					if ( $post->post_type == 'property' ) {
+						get_template_part( 'loop-templates/content', 'property-features' );
+					}
 					understrap_post_nav();
 
 					// If comments are open or we have at least one comment, load up the comment template.

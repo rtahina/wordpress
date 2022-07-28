@@ -27,7 +27,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 					the_post();
 					get_template_part( 'loop-templates/content', 'single' );
 					get_template_part( 'templates/content', 'property-list' );
-					understrap_post_nav();
+					// understrap_post_nav();
 
 					// If comments are open or we have at least one comment, load up the comment template.
 					if ( comments_open() || get_comments_number() ) {
